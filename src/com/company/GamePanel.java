@@ -30,7 +30,23 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void run() {
 
+        while(gameThread != null){
 
+            //System.out.println("This is working");
+            // 1 update = info such as character position
+            update();
+            //2 Draw = draw screen with updated position
+
+
+
+        }
+
+    }
+    public void update(){
+
+    }
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
 
     }
 }
