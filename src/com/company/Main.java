@@ -19,7 +19,6 @@ public class Main {
         scene.setVisible(true);
 
         gamePanel.startGameThread();
-        System.out.println("Hi");
 
     }
 }
