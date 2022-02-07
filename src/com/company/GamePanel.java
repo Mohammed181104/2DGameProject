@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable{
             // 1 update = info such as character position
             update();
             //2 Draw = draw screen with updated position
-
+            repaint();
 
 
         }
@@ -47,6 +47,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.white);
+        g2.fillRect(200,200,48,48);
     }
 }
