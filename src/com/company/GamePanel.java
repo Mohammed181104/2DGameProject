@@ -16,6 +16,8 @@ public class GamePanel extends JPanel implements Runnable{
     final int screenHeight = tileSize*maxScreenRow;
     public int locationX = 0;
     public int locationY = 0;
+    public int tempLocationX = 0;
+    public int tempLocationY = 0;
 
     //FPS
     int fps = 60;
@@ -63,6 +65,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
     // 1 update = info such as character position
     public void update(){
+        tempLocationY = locationY;
+        tempLocationX = locationX;
         if (keyH.upPressed == true){
             playerY -= playerSpeed;
             locationY --;
@@ -79,6 +83,9 @@ public class GamePanel extends JPanel implements Runnable{
             playerX += playerSpeed;
             locationX ++;
         }
+        if(tempLocationY!=locationY || tempLocationX!=locationX){
+            System.out.println(locationX+","+locationY);
+        }
 
     }
     //2 Draw = draw screen with updated position
@@ -87,6 +94,6 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.white);
         g2.fillRect(playerX,playerY,tileSize,tileSize);
-        System.out.println(locationX+","+locationY);
+
     }
 }
