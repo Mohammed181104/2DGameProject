@@ -1,7 +1,10 @@
 package com.company;
 
+import tile.TileManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 
 public class GamePanel extends JPanel implements Runnable{
@@ -9,11 +12,11 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize = 16; //216x216 tile
     final int scale = 3;
 
-    final int tileSize = originalTileSize*scale;
-    final int maxScreenCol = 30;
-    final int maxScreenRow = 30;
-    final int screenWidth = tileSize*maxScreenCol;
-    final int screenHeight = tileSize*maxScreenRow;
+    public final int tileSize = originalTileSize*scale;
+    public final int maxScreenCol = 30;
+    public final int maxScreenRow = 30;
+    public final int screenWidth = tileSize*maxScreenCol;
+    public final int screenHeight = tileSize*maxScreenRow;
     public int locationX = 0;
     public int locationY = 0;
     public int tempLocationX = 0;
@@ -22,13 +25,14 @@ public class GamePanel extends JPanel implements Runnable{
     //FPS
     int fps = 60;
 
+    TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
 
     //set players default position
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = tileSize;
+    int playerX = 0;
+    int playerY = 0;
+    public int playerSpeed = tileSize;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -45,12 +49,12 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
-        double drawInterval = 6000/fps;
+        double drawInterval = 1000000000/fps;
         double delta = 0;
-        long lastTime = System.currentTimeMillis();
+        long lastTime = System.nanoTime();
         long currentTime;
         while(gameThread != null){
-            currentTime = System.currentTimeMillis();
+            currentTime = System.nanoTime();
             delta += (currentTime-lastTime)/drawInterval;
             lastTime = currentTime;
 
@@ -67,19 +71,23 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         tempLocationY = locationY;
         tempLocationX = locationX;
-        if (keyH.upPressed == true){
+        if (keyH.upPressed){
+            delay();
             playerY -= playerSpeed;
             locationY --;
         }
-        if (keyH.downPressed == true){
+        if (keyH.downPressed){
+            delay();
             playerY += playerSpeed;
             locationY ++;
         }
-        if (keyH.leftPressed == true){
+        if (keyH.leftPressed){
+            delay();
             playerX -= playerSpeed;
             locationX --;
         }
-        if (keyH.rightPressed == true){
+        if (keyH.rightPressed){
+            delay();
             playerX += playerSpeed;
             locationX ++;
         }
@@ -92,8 +100,18 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        tileM.draw(g2);
         g2.setColor(Color.white);
         g2.fillRect(playerX,playerY,tileSize,tileSize);
 
+
+    }
+    //Adds delay to movement
+    public void delay(){
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }
