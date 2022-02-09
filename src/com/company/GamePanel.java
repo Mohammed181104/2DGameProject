@@ -14,6 +14,8 @@ public class GamePanel extends JPanel implements Runnable{
     final int maxScreenRow = 30;
     final int screenWidth = tileSize*maxScreenCol;
     final int screenHeight = tileSize*maxScreenRow;
+    public int locationX = 0;
+    public int locationY = 0;
 
     //FPS
     int fps = 60;
@@ -63,16 +65,21 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         if (keyH.upPressed == true){
             playerY -= playerSpeed;
+            locationY --;
         }
         if (keyH.downPressed == true){
             playerY += playerSpeed;
+            locationY ++;
         }
         if (keyH.leftPressed == true){
             playerX -= playerSpeed;
+            locationX --;
         }
         if (keyH.rightPressed == true){
             playerX += playerSpeed;
+            locationX ++;
         }
+
     }
     //2 Draw = draw screen with updated position
     public void paintComponent(Graphics g){
@@ -80,5 +87,6 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.white);
         g2.fillRect(playerX,playerY,tileSize,tileSize);
+        System.out.println(locationX+","+locationY);
     }
 }
