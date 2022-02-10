@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public final int tileSize = originalTileSize*scale;
     public final int maxScreenCol = 30;
-    public final int maxScreenRow = 30;
+    public final int maxScreenRow = 20;
     public final int screenWidth = tileSize*maxScreenCol;
     public final int screenHeight = tileSize*maxScreenRow;
     public int locationX = 0;
@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable{
     int fps = 60;
 
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    public KeyHandler keyH = new KeyHandler();
     Thread gameThread;
 
     //set players default position
@@ -100,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        tileM.draw(g2);
+        tileM.draw(g2,locationX,locationY);
         g2.setColor(Color.white);
         g2.fillRect(playerX,playerY,tileSize,tileSize);
 
