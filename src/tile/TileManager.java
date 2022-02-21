@@ -29,6 +29,11 @@ public class TileManager {
             tile[0].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile1.png"));
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile2.png"));
+            tile[2] = new Tile();
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile3.png"));
+            tile[3] = new Tile();
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile4.png"));
+
         }catch(Exception e){
             System.out.println(e);
         }
@@ -69,9 +74,31 @@ public class TileManager {
             int tileNum = mapNum[col][row];
             if(gp.keyH.spacePressed){
                 mapNum[pX][pY] = 1;
-                tileNum = mapNum[pX][pY];
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
             }
-            g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+            else if(gp.keyH.onePressed){
+                mapNum[pX][pY] = 3;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX+1][pY+1] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX+1][pY-1] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX-1][pY+1] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX-1][pY-1] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX-1][pY] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX+1][pY] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX][pY-1] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                mapNum[pX][pY+1] = 2;
+                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+
+            }else {
+                g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            }
             col++;
             x += gp.tileSize;
             if(col == gp.maxScreenCol){
