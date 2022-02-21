@@ -77,16 +77,18 @@ public class TileManager {
                 g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
             }
             else if(gp.keyH.onePressed){
-                mapNum[pX][pY] = 3;
-                mapNum[pX+1][pY+1] = 2;
-                mapNum[pX+1][pY-1] = 2;
-                mapNum[pX-1][pY+1] = 2;
-                mapNum[pX-1][pY-1] = 2;
-                mapNum[pX-1][pY] = 2;
-                mapNum[pX+1][pY] = 2;
-                mapNum[pX][pY-1] = 2;
-                mapNum[pX][pY+1] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
+                if(mapNum[pX][pY]!=1) {
+                    mapNum[pX][pY] = 3;
+                    mapNum[pX + 1][pY + 1] = 2;
+                    mapNum[pX + 1][pY - 1] = 2;
+                    mapNum[pX - 1][pY + 1] = 2;
+                    mapNum[pX - 1][pY - 1] = 2;
+                    mapNum[pX - 1][pY] = 2;
+                    mapNum[pX + 1][pY] = 2;
+                    mapNum[pX][pY - 1] = 2;
+                    mapNum[pX][pY + 1] = 2;
+                    g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+                }
 
             }else {
                 g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
