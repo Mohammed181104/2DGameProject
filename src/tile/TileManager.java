@@ -78,21 +78,13 @@ public class TileManager {
             }
             else if(gp.keyH.onePressed){
                 mapNum[pX][pY] = 3;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX+1][pY+1] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX+1][pY-1] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX-1][pY+1] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX-1][pY-1] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX-1][pY] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX+1][pY] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX][pY-1] = 2;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
                 mapNum[pX][pY+1] = 2;
                 g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
 
