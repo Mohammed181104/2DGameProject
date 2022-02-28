@@ -23,6 +23,8 @@ public class TileManager {
         loadMap();
 
     }
+
+    //LOADS TILE IMAGES
     public void getTileImage(){
         try{
             tile[0] = new Tile();
@@ -39,6 +41,7 @@ public class TileManager {
         }
     }
 
+    //LOADS ORIGINAL STARTING MAP
     public void loadMap(){
         try{
             InputStream is = getClass().getResourceAsStream("/map.txt");
@@ -65,6 +68,7 @@ public class TileManager {
         }
     }
 
+    //DRAWS BLOCK IN LOCATION
     public void draw(Graphics2D g2, int pX,int pY){
         int col = 0;
         int row = 0;
@@ -97,6 +101,8 @@ public class TileManager {
             }
         }
     }
+
+    //Creates a loop around the block placed - NO IDEA HOW IT WORKS
     public void Spiral(int X, int Y,int placeX, int placeY, Graphics2D g3, int tileNum){
         int x,y,dx,dy;
         x=y=dx=0;
