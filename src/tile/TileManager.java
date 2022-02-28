@@ -81,12 +81,7 @@ public class TileManager {
                 g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
             }
             else if(gp.keyH.onePressed){
-                if(mapNum[pX][pY]!=1) {
-                    Spiral(5,5,pX,pY,g2,tileNum);
-                    mapNum[pX][pY] = 3;
-                    g2.drawImage(tile[tileNum].image, pX, pY, gp.tileSize, gp.tileSize, null);
-
-                }
+                drawLight(g2, pX, pY, tileNum);
 
             }else {
                 g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
@@ -102,8 +97,16 @@ public class TileManager {
         }
     }
 
+    private void drawLight(Graphics2D g2, int pX, int pY, int tileNum) {
+        if(mapNum[pX][pY]!=1) {
+            Spiral(5,5, pX, pY, g2, tileNum);
+            mapNum[pX][pY] = 3;
+            g2.drawImage(tile[tileNum].image, pX, pY, gp.tileSize, gp.tileSize, null);
+        }
+    }
+
     //Creates a loop around the block placed - NO IDEA HOW IT WORKS
-    public void Spiral(int X, int Y,int placeX, int placeY, Graphics2D g3, int tileNum){
+    private void Spiral(int X, int Y,int placeX, int placeY, Graphics2D g3, int tileNum){
         int x,y,dx,dy;
         x=y=dx=0;
         dy=-1;
