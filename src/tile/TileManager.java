@@ -82,8 +82,8 @@ public class TileManager {
             }
             else if(gp.keyH.onePressed){
                 drawLight(g2, pX, pY, tileNum);
-
-            }else {
+            }
+            else {
                 g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
             }
             col++;
@@ -114,7 +114,6 @@ public class TileManager {
         int maxI = t*t;
         for (int i = 0; i < maxI; i++) {
             if((-1*X/2 <= x)&&(x<=X/2)&&(-1*Y/2 <= y)&&(y<= Y/2)){
-
                 if(mapNum[placeX+x][placeY+y] == 0) {
                     mapNum[placeX+x][placeY+y] = 2;
                     g3.drawImage(tile[tileNum].image, placeX, placeY, gp.tileSize, gp.tileSize, null);
