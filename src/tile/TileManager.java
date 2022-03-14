@@ -76,11 +76,7 @@ public class TileManager {
         int y = 0;
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapNum[col][row];
-            if(gp.keyH.spacePressed){
-                mapNum[pX][pY] = 1;
-                g2.drawImage(tile[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
-            }
-            else if(gp.keyH.onePressed){
+            if(gp.keyH.onePressed){
                 drawLight(g2, pX, pY, tileNum);
             }
             else {
