@@ -2,6 +2,7 @@ package tile;
 
 import com.company.GamePanel;
 import com.company.KeyHandler;
+import com.company.Tiles;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.io.InputStreamReader;
 
 public class TileManager {
     GamePanel gp;
-    Tile[] tile;
+    public Tile[] tile;
     int mapNum[][];
 
     public TileManager(GamePanel gp){

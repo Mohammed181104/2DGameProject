@@ -1,16 +1,20 @@
 package com.company;
 
+import java.awt.image.BufferedImage;
+
 public class Tiles {
     private boolean light;
     private int type; // e.g. "wall" - 1, "house" - 2, "generator" - 3, "empty" - 0, "farm" - 4, "light" - 5, "mine" - 6
     private int x;
     private int y;
+    public BufferedImage image;
 
-    public Tiles(boolean light, int type, int x, int y) {
+    public Tiles(boolean light, int type, int x, int y,BufferedImage image) {
         this.light = light;
         this.type = type;
         this.x = x;
         this.y = y;
+        this.image=image;
     }
 
     public boolean isLight() {

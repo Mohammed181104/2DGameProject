@@ -1,16 +1,19 @@
 package com.company;
 
+import tile.TileManager;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameBoard {
     private static ArrayList<Tiles> grid = new ArrayList<>();
     private static int gridSize = 128;
+    public static GamePanel gp = new GamePanel();
 
     public static void createGrid(){
         for (int i = 0; i < gridSize; i++){
             for (int j = 0; j < gridSize; j++){
-                Tiles myTile = new Tiles(false, 0, i, j);
+                Tiles myTile = new Tiles(false, 0, i, j, gp.tileM.tile[0].image);
                 grid.add(myTile);
             }
         }
@@ -68,7 +71,7 @@ public class GameBoard {
         int size = grid.size();
         boolean found = false;
         int count = 0;
-        Tiles outTile = new Tiles(false,-1,-1,-1);
+        Tiles outTile = new Tiles(false,-1,-1,-1,gp.tileM.tile[0].image);
         while (!found && count < size){
             Tiles myTile = grid.get(count);
             if (myTile.getX() == x && myTile.getY() == y){
