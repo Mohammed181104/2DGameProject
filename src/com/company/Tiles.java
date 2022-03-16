@@ -16,6 +16,11 @@ public class Tiles {
         this.y = y;
         this.image=image;
     }
+    public Tiles(boolean light, int type,BufferedImage image) {
+        this.light = light;
+        this.type = type;
+        this.image=image;
+    }
 
     public boolean isLight() {
         return light;

@@ -13,12 +13,12 @@ import java.io.InputStreamReader;
 
 public class TileManager {
     GamePanel gp;
-    public Tile[] tile;
+    public Tiles[] tile;
     int mapNum[][];
 
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[10];
+        tile = new Tiles[10];
         mapNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileImage();
         loadMap();
@@ -28,14 +28,10 @@ public class TileManager {
     //LOADS TILE IMAGES
     public void getTileImage(){
         try{
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile1.png"));
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile2.png"));
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile3.png"));
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile4.png"));
+            tile[0] = new Tiles(false,0,ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile1.png")));
+            tile[1] = new Tiles(false,1,ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile2.png")));
+            tile[2] = new Tiles(true,0,ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile3.png")));
+            tile[3] = new Tiles(true,5,ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile4.png")));
 
         }catch(Exception e){
             System.out.println(e);

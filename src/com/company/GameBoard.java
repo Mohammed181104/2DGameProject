@@ -10,14 +10,14 @@ public class GameBoard {
     private static int gridSize = 128;
     public static GamePanel gp = new GamePanel();
 
-    public static void createGrid(){
+    /*public static void createGrid(){
         for (int i = 0; i < gridSize; i++){
             for (int j = 0; j < gridSize; j++){
                 Tiles myTile = new Tiles(false, 0, i, j, gp.tileM.tile[0].image);
                 grid.add(myTile);
             }
         }
-    }
+    }*/
     public static void createBorder(){
         int size = grid.size();
         for (int i = 0; i < size; i++){
