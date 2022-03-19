@@ -1,8 +1,6 @@
 package tile;
 
-import com.company.GamePanel;
-import com.company.KeyHandler;
-import com.company.Tiles;
+import com.company.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
+
+import static com.company.GameBoard.gridSize;
 
 public class TileManager {
     GamePanel gp;
@@ -22,6 +23,8 @@ public class TileManager {
         mapNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileImage();
         loadMap();
+
+
 
     }
 
@@ -71,13 +74,19 @@ public class TileManager {
         int row = 0;
         int x = 0;
         int y = 0;
+
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapNum[col][row];
             if(gp.keyH.onePressed){
-                drawLight(g2, pX, pY, tileNum);
+                drawLight(g2, pX, pY, 2);
+            }
+            else if(gp.keyH.twoPressed){
+                generateStartingZone(g2);
+                break;
             }
             else {
                 g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+
             }
             col++;
             x += gp.tileSize;
@@ -108,7 +117,7 @@ public class TileManager {
         for (int i = 0; i < maxI; i++) {
             if((-1*X/2 <= x)&&(x<=X/2)&&(-1*Y/2 <= y)&&(y<= Y/2)){
                 if(mapNum[placeX+x][placeY+y] == 0) {
-                    mapNum[placeX+x][placeY+y] = 2;
+                    mapNum[placeX+x][placeY+y] = tileNum;
                     g3.drawImage(tile[tileNum].image, placeX, placeY, gp.tileSize, gp.tileSize, null);
                 }
             }
@@ -120,6 +129,13 @@ public class TileManager {
             x += dx;
             y += dy;
         }
+
+    }
+    public void generateStartingZone(Graphics2D g2){ // creates an 8 x 8 area of light
+        Random random = new Random();
+        int xCoord = random.nextInt(20)+5;
+        int yCoord = random.nextInt(10)+5;
+        Spiral(5,5,xCoord,yCoord,g2,2);
 
     }
 }

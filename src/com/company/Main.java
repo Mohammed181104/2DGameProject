@@ -11,6 +11,7 @@ public class Main {
         scene.setResizable(false);
         scene.setTitle("2DThing");
 
+
         GamePanel gamePanel = new GamePanel();
         scene.add(gamePanel);
         scene.pack();

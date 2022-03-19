@@ -7,8 +7,10 @@ import java.util.Random;
 
 public class GameBoard {
     private static ArrayList<Tiles> grid = new ArrayList<>();
-    private static int gridSize = 128;
     public static GamePanel gp = new GamePanel();
+    public static int gridSize = gp.maxScreenCol*gp.maxScreenRow;
+
+
 
     /*public static void createGrid(){
         for (int i = 0; i < gridSize; i++){
@@ -113,7 +115,7 @@ public class GameBoard {
     public static void generateStartingZone(){ // creates an 8 x 8 area of light
         int xCoord = IORsystems.RandomInt(gridSize-9,1);
         int yCoord = IORsystems.RandomInt(gridSize-9,1);
-        for (int i = 0; i < 8; i++){
+        /*for (int i = 0; i < 8; i++){
             Tiles myTile = searchGrid(xCoord, yCoord+i);
             Tiles myTile1 = searchGrid(xCoord+1, yCoord+i);
             Tiles myTile2 = searchGrid(xCoord+2, yCoord+i);
@@ -130,6 +132,7 @@ public class GameBoard {
             myTile5.setLight(true);
             myTile6.setLight(true);
             myTile7.setLight(true);
-        }
+        }*/
+
     }
 }

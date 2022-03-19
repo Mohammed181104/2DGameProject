@@ -1,7 +1,7 @@
 package com.company;
 
 public class EndTurnSytems {
-    private static Resources myResources = new Resources(0,0,0,0,0,false);
+    private static Resources myResources = new Resources(0,0,0,0,100,false);
     private static boolean gameEnd = false;
 
     public static void addStone(){
