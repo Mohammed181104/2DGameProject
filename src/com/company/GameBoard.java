@@ -112,27 +112,4 @@ public class GameBoard {
         }
     }
 
-    public static void generateStartingZone(){ // creates an 8 x 8 area of light
-        int xCoord = IORsystems.RandomInt(gridSize-9,1);
-        int yCoord = IORsystems.RandomInt(gridSize-9,1);
-        /*for (int i = 0; i < 8; i++){
-            Tiles myTile = searchGrid(xCoord, yCoord+i);
-            Tiles myTile1 = searchGrid(xCoord+1, yCoord+i);
-            Tiles myTile2 = searchGrid(xCoord+2, yCoord+i);
-            Tiles myTile3 = searchGrid(xCoord+3, yCoord+i);
-            Tiles myTile4 = searchGrid(xCoord+4, yCoord+i);
-            Tiles myTile5 = searchGrid(xCoord+5, yCoord+i);
-            Tiles myTile6 = searchGrid(xCoord+6, yCoord+i);
-            Tiles myTile7 = searchGrid(xCoord+7, yCoord+i);
-            myTile.setLight(true);
-            myTile1.setLight(true);
-            myTile2.setLight(true);
-            myTile3.setLight(true);
-            myTile4.setLight(true);
-            myTile5.setLight(true);
-            myTile6.setLight(true);
-            myTile7.setLight(true);
-        }*/
-
-    }
 }
