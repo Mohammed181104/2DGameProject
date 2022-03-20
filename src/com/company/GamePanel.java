@@ -4,6 +4,7 @@ import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
@@ -11,6 +12,9 @@ public class GamePanel extends JPanel implements Runnable{
     //Screen Settings
     final int originalTileSize = 16; //216x216 tile
     final int scale = 3;
+    private Random random = new Random();
+    private int xRandStart = random.nextInt(20)+5;
+    private int yRandStart = random.nextInt(10)+5;
 
     public final int tileSize = originalTileSize*scale;
     public final int maxScreenCol = 30;
@@ -53,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable{
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
+
         while(gameThread != null){
             currentTime = System.nanoTime();
             delta += (currentTime-lastTime)/drawInterval;
@@ -100,12 +105,12 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        tileM.generateStartingZone(g2,xRandStart,yRandStart);
         tileM.draw(g2,locationX,locationY);
         g2.setColor(Color.white);
         g2.fillRect(playerX,playerY,tileSize,tileSize);
-
-
     }
+
     //Adds delay to movement
     public void delay(){
         try {

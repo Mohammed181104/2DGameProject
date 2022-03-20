@@ -74,20 +74,15 @@ public class TileManager {
         int row = 0;
         int x = 0;
         int y = 0;
-
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapNum[col][row];
             if(gp.keyH.onePressed){
                 drawLight(g2, pX, pY, 2);
             }
             else if(gp.keyH.twoPressed){
-                generateStartingZone(g2);
-                break;
-            }
-            else {
-                g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
 
             }
+            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
             col++;
             x += gp.tileSize;
             if(col == gp.maxScreenCol){
@@ -103,7 +98,6 @@ public class TileManager {
         if(mapNum[pX][pY]!=1) {
             Spiral(5,5, pX, pY, g2, tileNum);
             mapNum[pX][pY] = 3;
-            g2.drawImage(tile[tileNum].image, pX, pY, gp.tileSize, gp.tileSize, null);
         }
     }
 
@@ -118,7 +112,6 @@ public class TileManager {
             if((-1*X/2 <= x)&&(x<=X/2)&&(-1*Y/2 <= y)&&(y<= Y/2)){
                 if(mapNum[placeX+x][placeY+y] == 0) {
                     mapNum[placeX+x][placeY+y] = tileNum;
-                    g3.drawImage(tile[tileNum].image, placeX, placeY, gp.tileSize, gp.tileSize, null);
                 }
             }
             if((x==y)||((x<0)&&(x==(-1*y)))||((x>0)&&(x==1-y))){
@@ -131,11 +124,8 @@ public class TileManager {
         }
 
     }
-    public void generateStartingZone(Graphics2D g2){ // creates an 8 x 8 area of light
-        Random random = new Random();
-        int xCoord = random.nextInt(20)+5;
-        int yCoord = random.nextInt(10)+5;
-        Spiral(5,5,xCoord,yCoord,g2,2);
+    public void generateStartingZone(Graphics2D g2,int xCoord,int yCoord){ // creates an 8 x 8 area of light
+        Spiral(8,8,xCoord,yCoord,g2,2);
 
     }
 }
