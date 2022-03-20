@@ -2,6 +2,7 @@ package com.company;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.concurrent.TimeUnit;
 
 public class KeyHandler implements KeyListener {
     public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed, onePressed, twoPressed;
@@ -33,6 +34,7 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_2){
             twoPressed = true;
+            delay();
         }
     }
 
@@ -59,6 +61,13 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_2){
             twoPressed = false;
+        }
+    }
+    public void delay(){
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        }catch(Exception e){
+            System.out.println(e);
         }
     }
 }

@@ -10,8 +10,6 @@ public class GameBoard {
     public static GamePanel gp = new GamePanel();
     public static int gridSize = gp.maxScreenCol*gp.maxScreenRow;
 
-
-
     /*public static void createGrid(){
         for (int i = 0; i < gridSize; i++){
             for (int j = 0; j < gridSize; j++){
@@ -20,6 +18,7 @@ public class GameBoard {
             }
         }
     }*/
+
     public static void createBorder(){
         int size = grid.size();
         for (int i = 0; i < size; i++){

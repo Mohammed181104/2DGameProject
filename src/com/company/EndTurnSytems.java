@@ -1,18 +1,18 @@
 package com.company;
 
 public class EndTurnSytems {
-    private static Resources myResources = new Resources(0,0,0,0,100,false);
+    private static Resources myResources = new Resources(0,0,0,0,0,false);
     private static boolean gameEnd = false;
 
     public static void addStone(){
         int numMines = GameBoard.getNumTiles(6);
-        numMines = numMines / 4;
         int total = 0;
         for (int i = 0; i < numMines; i++){
             total = total + IORsystems.RandomInt(50,10);
         }
         int stone = myResources.getStone() + total;
         myResources.setStone(stone);
+        System.out.println(stone);
     }
 
     public static void addCoal(){

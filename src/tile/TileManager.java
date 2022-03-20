@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static com.company.GameBoard.gridSize;
 
@@ -16,6 +17,7 @@ public class TileManager {
     GamePanel gp;
     public Tiles[] tile;
     int mapNum[][];
+    private int numMines;
 
     public TileManager(GamePanel gp){
         this.gp = gp;
@@ -35,6 +37,7 @@ public class TileManager {
             tile[1] = new Tiles(false,1,ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile2.png")));
             tile[2] = new Tiles(true,0,ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile3.png")));
             tile[3] = new Tiles(true,5,ImageIO.read(getClass().getResourceAsStream("/Tiles/Tile4.png")));
+            tile[4] = new Tiles(true,5,ImageIO.read(getClass().getResourceAsStream("/Tiles/Mine.png")));
 
         }catch(Exception e){
             System.out.println(e);
@@ -77,12 +80,14 @@ public class TileManager {
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapNum[col][row];
             if(gp.keyH.onePressed){
-                drawLight(g2, pX, pY, 2);
+                drawLight(g2, pX, pY);
             }
             else if(gp.keyH.twoPressed){
-
+                drawMine(g2,pX,pY);
+                numMines++;
             }
             g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            System.out.println(numMines);
             col++;
             x += gp.tileSize;
             if(col == gp.maxScreenCol){
@@ -94,10 +99,18 @@ public class TileManager {
         }
     }
 
-    private void drawLight(Graphics2D g2, int pX, int pY, int tileNum) {
+    private void drawLight(Graphics2D g2, int pX, int pY) {
         if(mapNum[pX][pY]!=1) {
-            Spiral(5,5, pX, pY, g2, tileNum);
+            Spiral(5,5, pX, pY, g2, 2);
             mapNum[pX][pY] = 3;
+        }
+    }
+
+    private void drawMine(Graphics2D g2, int pX, int pY) {
+        if(mapNum[pX][pY]!=1) {
+            Spiral(2,2, pX, pY, g2, 1);
+            mapNum[pX+1][pY+1] = 4;
+
         }
     }
 
@@ -110,7 +123,7 @@ public class TileManager {
         int maxI = t*t;
         for (int i = 0; i < maxI; i++) {
             if((-1*X/2 <= x)&&(x<=X/2)&&(-1*Y/2 <= y)&&(y<= Y/2)){
-                if(mapNum[placeX+x][placeY+y] == 0) {
+                if(mapNum[placeX+x][placeY+y] == 0||mapNum[placeX+x][placeY+y] == 2) {
                     mapNum[placeX+x][placeY+y] = tileNum;
                 }
             }
@@ -127,5 +140,12 @@ public class TileManager {
     public void generateStartingZone(Graphics2D g2,int xCoord,int yCoord){ // creates an 8 x 8 area of light
         Spiral(8,8,xCoord,yCoord,g2,2);
 
+    }
+    public void delay(){
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

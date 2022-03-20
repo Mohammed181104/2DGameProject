@@ -15,7 +15,6 @@ public class GamePanel extends JPanel implements Runnable{
     private Random random = new Random();
     private int xRandStart = random.nextInt(20)+5;
     private int yRandStart = random.nextInt(10)+5;
-
     public final int tileSize = originalTileSize*scale;
     public final int maxScreenCol = 30;
     public final int maxScreenRow = 20;
@@ -57,20 +56,16 @@ public class GamePanel extends JPanel implements Runnable{
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
-
         while(gameThread != null){
             currentTime = System.nanoTime();
             delta += (currentTime-lastTime)/drawInterval;
             lastTime = currentTime;
-
             if(delta >= 1) {
                 update();
                 repaint();
                 delta--;
             }
-
         }
-
     }
     // 1 update = info such as character position
     public void update(){
