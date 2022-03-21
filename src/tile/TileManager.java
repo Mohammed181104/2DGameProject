@@ -16,8 +16,8 @@ import static com.company.GameBoard.gridSize;
 public class TileManager {
     GamePanel gp;
     public Tiles[] tile;
-    int mapNum[][];
-    private int numMines;
+    public int mapNum[][];
+
 
     public TileManager(GamePanel gp){
         this.gp = gp;
@@ -25,9 +25,6 @@ public class TileManager {
         mapNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileImage();
         loadMap();
-
-
-
     }
 
     //LOADS TILE IMAGES
@@ -84,10 +81,8 @@ public class TileManager {
             }
             else if(gp.keyH.twoPressed){
                 drawMine(g2,pX,pY);
-                numMines++;
             }
             g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
-            System.out.println(numMines);
             col++;
             x += gp.tileSize;
             if(col == gp.maxScreenCol){

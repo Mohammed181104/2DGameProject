@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int locationY = 0;
     public int tempLocationX = 0;
     public int tempLocationY = 0;
+    public int mineNum = 0;
 
     //FPS
     int fps = 60;
@@ -93,7 +94,14 @@ public class GamePanel extends JPanel implements Runnable{
         }
         if(tempLocationY!=locationY || tempLocationX!=locationX){
             System.out.println(locationX+","+locationY);
+            System.out.println(EndTurnSytems.myResources.toString());
+            EndTurnSytems.addStone();
         }
+        if(keyH.twoPressed){
+            mineNum++;
+        }
+
+
 
     }
     //2 Draw = draw screen with updated position

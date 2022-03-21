@@ -1,13 +1,14 @@
 package com.company;
 
 public class EndTurnSytems {
-    private static Resources myResources = new Resources(0,0,0,0,0,false);
+    public static Resources myResources = new Resources(0,0,0,0,0,false);
     private static boolean gameEnd = false;
+    private static GamePanel gp3 = new GamePanel();
+    private static int numOfMines = gp3.mineNum/12;
 
     public static void addStone(){
-        int numMines = GameBoard.getNumTiles(6);
         int total = 0;
-        for (int i = 0; i < numMines; i++){
+        for (int i = 0; i < numOfMines; i++){
             total = total + IORsystems.RandomInt(50,10);
         }
         int stone = myResources.getStone() + total;
@@ -16,10 +17,8 @@ public class EndTurnSytems {
     }
 
     public static void addCoal(){
-        int numMines = GameBoard.getNumTiles(6);
-        numMines = numMines / 4;
         int total = 0;
-        for (int i = 0; i < numMines; i++){
+        for (int i = 0; i < numOfMines; i++){
             total = total + 10;
         }
         int coal = myResources.getCoal() + total;
@@ -27,10 +26,8 @@ public class EndTurnSytems {
     }
 
     public static void addFood(){
-        int numMines = GameBoard.getNumTiles(4);
-        numMines = numMines / 9;
         int total = 0;
-        for (int i = 0; i < numMines; i++){
+        for (int i = 0; i < numOfMines; i++){
             total = total + IORsystems.RandomInt(50,10);
         }
         int food = myResources.getFood() + total;
