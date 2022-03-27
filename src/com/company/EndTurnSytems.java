@@ -1,22 +1,22 @@
 package com.company;
 
 public class EndTurnSytems {
-    public static Resources myResources = new Resources(0,0,0,0,0,false);
+    public static Resources myResources = new Resources(0,0,0,0,40,false);
     private static boolean gameEnd = false;
     private static GamePanel gp3 = new GamePanel();
-    private static int numOfMines = gp3.mineNum/12;
+    private static int[][] mapTemp = gp3.tileM.mapNum;
 
-    public static void addStone(){
+    public static void addStone(int numOfMines){
         int total = 0;
-        for (int i = 0; i < numOfMines; i++){
-            total = total + IORsystems.RandomInt(50,10);
+        for (int i = 0; i < numOfMines; i++) {
+            total += IORsystems.RandomInt(4,1);
         }
-        int stone = myResources.getStone() + total;
+        int stone = myResources.getStone() + total/5;
         myResources.setStone(stone);
-        System.out.println(stone);
+
     }
 
-    public static void addCoal(){
+    public static void addCoal(int numOfMines){
         int total = 0;
         for (int i = 0; i < numOfMines; i++){
             total = total + 10;
@@ -25,7 +25,7 @@ public class EndTurnSytems {
         myResources.setCoal(coal);
     }
 
-    public static void addFood(){
+    public static void addFood(int numOfMines){
         int total = 0;
         for (int i = 0; i < numOfMines; i++){
             total = total + IORsystems.RandomInt(50,10);

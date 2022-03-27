@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int tempLocationY = 0;
     public int mineNum = 0;
 
+
     //FPS
     int fps = 60;
 
@@ -53,18 +54,20 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
-        double drawInterval = 1000000000/fps;
+        double drawInterval = 1000/fps;
         double delta = 0;
-        long lastTime = System.nanoTime();
+        long lastTime = System.currentTimeMillis();
         long currentTime;
+        int temp = 0;
         while(gameThread != null){
-            currentTime = System.nanoTime();
+            currentTime = System.currentTimeMillis();
             delta += (currentTime-lastTime)/drawInterval;
             lastTime = currentTime;
             if(delta >= 1) {
                 update();
                 repaint();
                 delta--;
+                stoneAdd();
             }
         }
     }
@@ -95,11 +98,8 @@ public class GamePanel extends JPanel implements Runnable{
         if(tempLocationY!=locationY || tempLocationX!=locationX){
             System.out.println(locationX+","+locationY);
             System.out.println(EndTurnSytems.myResources.toString());
-            EndTurnSytems.addStone();
         }
-        if(keyH.twoPressed){
-            mineNum++;
-        }
+
 
 
 
@@ -121,5 +121,20 @@ public class GamePanel extends JPanel implements Runnable{
         }catch(Exception e){
             System.out.println(e);
         }
+    }
+
+    public void stoneAdd(){
+        int lastMineNum = 0;
+        for (int i = 0; i < tileM.mapNum.length; i++) {
+            for (int j = 0; j < tileM.mapNum[i].length; j++) {
+                if (tileM.mapNum[i][j] == 4) {
+                    lastMineNum++;
+                }
+            }
+        }
+        if(mineNum!=lastMineNum) {
+            mineNum=lastMineNum;
+        }
+        EndTurnSytems.addStone(mineNum);
     }
 }

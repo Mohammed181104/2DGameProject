@@ -77,10 +77,17 @@ public class TileManager {
         while(col < gp.maxScreenCol && row < gp.maxScreenRow){
             int tileNum = mapNum[col][row];
             if(gp.keyH.onePressed){
-                drawLight(g2, pX, pY);
+                if(EndTurnSytems.myResources.getStone()>100) {
+                    drawLight(g2, pX, pY);
+                    EndTurnSytems.myResources.setStone(EndTurnSytems.myResources.getStone() - 100);
+                }
             }
-            else if(gp.keyH.twoPressed){
-                drawMine(g2,pX,pY);
+            else if(gp.keyH.twoPressed && mapNum[pX][pY] == 2 && mapNum[pX+1][pY+1] == 2){
+                if(EndTurnSytems.myResources.getStone()>10) {
+                    drawMine(g2, pX, pY);
+                    EndTurnSytems.myResources.setStone(EndTurnSytems.myResources.getStone() - 10);
+                }
+
             }
             g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
             col++;
@@ -105,7 +112,6 @@ public class TileManager {
         if(mapNum[pX][pY]!=1) {
             Spiral(2,2, pX, pY, g2, 1);
             mapNum[pX+1][pY+1] = 4;
-
         }
     }
 
@@ -130,17 +136,8 @@ public class TileManager {
             x += dx;
             y += dy;
         }
-
     }
     public void generateStartingZone(Graphics2D g2,int xCoord,int yCoord){ // creates an 8 x 8 area of light
         Spiral(8,8,xCoord,yCoord,g2,2);
-
-    }
-    public void delay(){
-        try {
-            TimeUnit.MILLISECONDS.sleep(200);
-        }catch(Exception e){
-            System.out.println(e);
-        }
     }
 }

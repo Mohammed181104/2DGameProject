@@ -34,8 +34,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_2){
             twoPressed = true;
-            delay();
+            //delay();
         }
+
     }
 
     @Override
@@ -65,7 +66,7 @@ public class KeyHandler implements KeyListener {
     }
     public void delay(){
         try {
-            TimeUnit.MILLISECONDS.sleep(200);
+            TimeUnit.MILLISECONDS.sleep(2000);
         }catch(Exception e){
             System.out.println(e);
         }
